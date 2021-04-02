@@ -1,13 +1,13 @@
-var mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-var schema=new Schema({
-	imagePath:{type:String, require:true},
-	title:{type:String, require:true},
-	description:{type:String, require:true},
-	price:{type:Number, require:true},
-	category:{type:String,require:true},
-	amount:{type:Number,require:true},
-	status:{type:String,require:true},
-	releaseDate:{type:String, default:''},
-	publisher:{type:String, default:''}
+const kanjiSchema = new mongoose.Schema({
+    kanji: { type: String, require: true, unique: true },
+    sinoVReading: { type: String, require: true },
+    meaning: { type: String, require: true },
+    level: { type: String, require: true },
+    // vocalbulary: [
+    //     { word: String, hiragana: String, meaning: String }
+    // ]
 });
+
+exports.Kanji = mongoose.model('Kanji', kanjiSchema);
