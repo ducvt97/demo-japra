@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="Webapp.App"
+	controllerName="Japra.controller.App"
 	displayBlock="true"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -7,15 +7,26 @@
 	xmlns:core="sap.ui.core"
 	xmlns:tnt="sap.tnt">
 	<App id="app">
-		<Page title="My App">
-			<Button
+		<Page title="{i18n>appName}">
+			
+            <!-- <Input liveChange=".onTextChange"
+                value="{/recipient/name}"
+                description="Hello {/recipient/name} {/number}"
+                valueLiveUpdate="true"
+                width="60%"/> -->
+            <Input
+                value="{/searchText}"
+                valueLiveUpdate="true"
+                width="60%"/>
+            <Button
 				icon="sap-icon://sap-ui5"
-				text="Go!"
-				press=".onPress"
+				text="{i18n>searchText}"
+				press=".onPressSearch"
 				type="Emphasized"
 				class="sapUiSmallMargin"/>
+            
 		</Page>
-		<Page id="intro" title="Create Enterprise-Ready Web Apps with Ease">
+		<!-- <Page id="intro" title="Create Enterprise-Ready Web Apps with Ease">
 			<l:BlockLayout background="Light">
 				<l:BlockLayoutRow>
 					<l:BlockLayoutCell>
@@ -43,7 +54,7 @@
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
 			</l:BlockLayout>
-		</Page>
+		</Page> -->
 
 	</App>
 </mvc:View>

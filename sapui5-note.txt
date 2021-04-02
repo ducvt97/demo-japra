@@ -1,0 +1,88 @@
+1. create new project:	npm init > create folder webapp > ui5 init
+	https://help.sap.com/saphelp_snc700_ehp04/helpdata/de/3a/9babace121497abea8f0ea66e156d9/content.htm?no_cache=true
+2. SAPUI5: framework frontend
+	Bootstrap: - quá trình load & init SAPUI5. Sau khi load xong các function sẽ đc gọi
+		- để trong thẻ <script>
+		- src: khai báo core lib
+		- ui-libs: thư viện ui chứa các ui control cần dùng
+		- onInit: define module init đầu tiên
+		- resourceroots: define namespace: path đến resource
+3. Control: define ui & behavior, 1 component trong SAPUI5
+	sap.ui.define(["sap/.../namespace"], function(namespace) {"use strict"; ...});
+	Có các props, function để config
+	Chỉ có instance của sap.ui.core.Control or subclass của nó mới đc render độc lập và dùng đc hàm placeAt(id) (render tại thẻ có id.
+	Cấu trúc: chia thành view (xmlView) và controller
+4. xmlView: define ui theo xml
+	<mvc:View controllerName="" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" (cần j khai báo đó)>
+	trong file js:
+		sap.ui.define([
+			"sap/ui/core/mvc/XMLView"
+		], function (XMLView) {
+			"use strict";
+			XMLView.create({
+				viewName: "sap.ui.demo.walkthrough.view.App"
+			}).then(function (oView) {
+				oView.placeAt("content");
+			});
+		});
+5. Controller: tương tác vs view
+	sap.ui.define([
+	   "sap/ui/core/mvc/Controller"
+	], function (Controller) {
+		"use strict";
+			return Controller.extend("namespace", { ... });
+	});
+	onInit: chạy khi controller đc tạo
+6. Module: các khai báo control để sd. sap.ui.define([module], ...)
+7. JSONModel: khởi tạo obj dạng json
+	"sap/ui/model/json/JSONModel"
+	var oModel = new JSONModel({? : ?});
+	this.getView().setModel(oModel);	// hàm này để set obj gọi đc trong view, oModel change thì tự động update
+	{/field/...}: gọi model trong view (data binding)
+8. Translatable text: để tạo đa ngôn ngữ. "sap/ui/model/resource/ResourceModel"
+	- Tạo file .properties (chứa các cặp name-value: helloMsg=Hello {0}) // {1} là các param cho phép truyền giá trị
+	- Trong onInit controller
+		var i18nModel = new ResourceModel({
+			bundleName: "Webapp.i18n.i18n_en",
+			supportedLocales: [""],
+			fallbackLocale: ""
+		});
+		this.getView().setModel(i18nModel, "i18n");
+	- Truy xuất trong controller: var oBundle = this.getView().getModel("i18n").getResourceBundle();
+	- Gọi trong view: "{i18n>name}"
+9. Đóng gói thành Component: 
+	- Chia thêm các folder view, controller
+	- Tạo Component.js:
+		sap.ui.define([
+		   "sap/ui/core/UIComponent"
+		], function (UIComponent) {
+			"use strict";
+			return UIComponent.extend("sap.ui.JaPra.Component", {
+				metadata : {
+					"rootView": {
+						"viewName": "sap.ui.JaPra.view.App",
+						"type": "XML", "async": true, "id": "app"
+					}
+				},
+				init : function () { // = onInit
+				// call the init function of the parent
+				UIComponent.prototype.init.apply(this, arguments);
+				// ... something needs to be init
+			}
+		   });
+		});
+	- Trong index.js (file sd component)
+		sap.ui.define([
+			"sap/ui/core/ComponentContainer"
+		], function (ComponentContainer) {
+			"use strict";
+			new ComponentContainer({
+				name: "Japra",
+				settings : { id : "Japra" },
+				async: true
+			}).placeAt("content");
+		});
+10. manifest.json: mô tả + config project
+	Bỏ file index.js
+	data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+	<div data-sap-ui-component data-name="Japra" data-id="container" data-settings='{"id" : "Japra"}'></div>
