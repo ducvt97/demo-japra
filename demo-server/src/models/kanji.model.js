@@ -5,9 +5,6 @@ const kanjiSchema = new mongoose.Schema({
     sinoVReading: { type: String, require: true },
     meaning: { type: String, require: true },
     level: { type: String, require: true },
-    // vocalbulary: [
-    //     { word: String, hiragana: String, meaning: String }
-    // ]
 });
 
 exports.Kanji = mongoose.model('Kanji', kanjiSchema);
