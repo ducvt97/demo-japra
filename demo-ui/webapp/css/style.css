@@ -12,3 +12,8 @@
 
 	max-width: 15rem;
 }
+
+.columnTitle {
+	font-size: large;
+	font-weight: bold;
+}

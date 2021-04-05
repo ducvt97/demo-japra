@@ -78,7 +78,7 @@
                 {
                     "pattern": "vocabulary",
                     "name": "vocabulary",
-                    "target": "Vocabulary"
+                    "target": "vocabulary"
                 }
             ],
             "targets": {

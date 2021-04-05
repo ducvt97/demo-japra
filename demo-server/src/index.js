@@ -2,11 +2,15 @@ const express = require('express');
 const path = require('path');
 const router = require('./routes/index');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Initialize app
 const app = express();
 const port = 3000;
 
+app.use(cors({origin: '*'}));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 // Connect to MongoDB
 try{
     mongoose.connect('mongodb://localhost:27017/japra', {useNewUrlParser: true, useUnifiedTopology: true});

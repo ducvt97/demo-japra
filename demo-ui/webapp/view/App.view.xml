@@ -8,19 +8,20 @@
 	xmlns:tnt="sap.tnt">
 	<tnt:ToolPage>
 		<tnt:sideContent>
-			<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+			<tnt:SideNavigation id="sideNavigation" itemSelect=".onSelectMenuItem" selectedKey="home">
+				<core:Icon src="sap-icon://hello-world" size="8rem" />
 				<tnt:NavigationList>
-					<tnt:NavigationListItem text="Home" />
-					<tnt:NavigationListItem text="Kanji" />
-					<tnt:NavigationListItem text="Vocalbulary" id="subItem3" key="subItem3" />
+					<tnt:NavigationListItem text="Home" key="home" icon="sap-icon://home" />
+					<tnt:NavigationListItem text="Kanji" key="kanji" icon="sap-icon://text-formatting" />
+					<tnt:NavigationListItem text="Vocabulary" key="vocabulary" icon="sap-icon://document-text" />
 				</tnt:NavigationList>
-				<tnt:fixedItem>
+				<!-- <tnt:fixedItem>
 					<tnt:NavigationList>
 						<tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
 						<tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
 						<tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
 					</tnt:NavigationList>
-				</tnt:fixedItem>
+				</tnt:fixedItem> -->
 			</tnt:SideNavigation>
 		</tnt:sideContent>
 
