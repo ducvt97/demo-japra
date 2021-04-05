@@ -1,5 +1,6 @@
 1. create new project:	npm init > create folder webapp > ui5 init
-	https://help.sap.com/saphelp_snc700_ehp04/helpdata/de/3a/9babace121497abea8f0ea66e156d9/content.htm?no_cache=true
+https://help.sap.com/saphelp_snc700_ehp04/helpdata/de/3a/9babace121497abea8f0ea66e156d9/content.htm?no_cache=true
+	https://sap.github.io/ui5-tooling/pages/GettingStarted/
 2. SAPUI5: framework frontend
 	Bootstrap: - quá trình load & init SAPUI5. Sau khi load xong các function sẽ đc gọi
 		- để trong thẻ <script>
@@ -8,6 +9,7 @@
 		- onInit: define module init đầu tiên
 		- resourceroots: define namespace: path đến resource
 3. Control: define ui & behavior, 1 component trong SAPUI5
+	<body class="sapUiBody" id="">
 	sap.ui.define(["sap/.../namespace"], function(namespace) {"use strict"; ...});
 	Có các props, function để config
 	Chỉ có instance của sap.ui.core.Control or subclass của nó mới đc render độc lập và dùng đc hàm placeAt(id) (render tại thẻ có id.
@@ -33,7 +35,7 @@
 			return Controller.extend("namespace", { ... });
 	});
 	onInit: chạy khi controller đc tạo
-6. Module: các khai báo control để sd. sap.ui.define([module], ...)
+6. Module: resource trong sap, khai báo control để sd. sap.ui.define([module], ...)
 7. JSONModel: khởi tạo obj dạng json
 	"sap/ui/model/json/JSONModel"
 	var oModel = new JSONModel({? : ?});
@@ -86,3 +88,26 @@
 	Bỏ file index.js
 	data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
 	<div data-sap-ui-component data-name="Japra" data-id="container" data-settings='{"id" : "Japra"}'></div>
+11. Các wrapper:
+	- App: cung cấp các props cần thiết cho header html, allow navigate giữa các Page
+	- Page, Panel, content...
+12. Predefined css:
+	https://sapui5.hana.ondemand.com/#/topic/777168ffe8324873973151dae2356d1c
+	https://sapui5.hana.ondemand.com/#/topic/c71f6df62dae47ca8284310a6f5fc80a
+	https://sapui5.hana.ondemand.com/#/topic/ea08f53503da42c19afd342f4b0c9ec7
+13. Nested view: tách ra view khác, gọi lại = <mvc:XMLView viewName="" />
+14. Fragment: UI part (UI subtree), modal, dialogbox, add to top of the app, ko có controller, hàm vẫn viết trong controller khác
+	"sap/ui/core/Fragment"
+	- Dialog.fragment.xml
+		<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+			<Dialog id="helloDialog" title="Hello {/recipient/name}"></Dialog>
+		</core:FragmentDefinition>
+15. Icon: add as props: icon="sap-icon://<iconname>"
+	icon control: <core:Icon src="sap-icon://hello-world" size="8rem" />
+
+https://www.youtube.com/watch?v=OhvlK_eQaOc
+
+
+Question:
+1. html [dir="rtl"] html [dir="ltr"]
+

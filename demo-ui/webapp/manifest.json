@@ -28,6 +28,8 @@
         "dependencies": {
             "minUI5Version": "1.60",
             "libs": {
+                "sap.ui.core": {},
+				"sap.tnt": {},
                 "sap.m": {}
             }
         },
@@ -38,6 +40,59 @@
                     "bundleName": "Japra.i18n.i18n_en",
                     "supportedLocales": [""],
                     "fallbackLocale": ""
+                }
+            }
+        },
+        "resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "Japra.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "home",
+                    "target": "home"
+                },
+                {
+                    "pattern": "home",
+                    "name": "home",
+                    "target": "home"
+                },
+                {
+                    "pattern": "kanji",
+                    "name": "kanji",
+                    "target": "kanji"
+                },
+                {
+                    "pattern": "vocabulary",
+                    "name": "vocabulary",
+                    "target": "Vocabulary"
+                }
+            ],
+            "targets": {
+                "home": {
+                    "viewId": "home",
+                    "viewName": "Home"
+                },
+                "kanji": {
+                    "viewId": "kanji",
+                    "viewName": "Kanji"
+                },
+                "vocabulary": {
+                    "viewId": "vocabulary",
+                    "viewName": "Vocabulary"
                 }
             }
         },
