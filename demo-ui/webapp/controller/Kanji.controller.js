@@ -32,6 +32,11 @@ sap.ui.define([
             }
             let oModel = new JSONModel(oData);
 			this.getView().setModel(oModel);
+
+            // this._MessageManager = Core.getMessageManager();
+            // this._MessageManager.removeAllMessages();
+            // this._MessageManager.registerObject(this.getView().byId("addKanji"), true);
+            // this.oView.setModel(this._MessageManager.getMessageModel(),"message");
         },
 
 		onSelectLevel : function(oEvent) {
@@ -94,6 +99,23 @@ sap.ui.define([
 
 		// 	if (oInput.getRequired()) {
 		// 		this.handleRequiredField(oInput);
+		// 	}
+		// },
+        // handleRequiredField: function (oInput) {
+		// 	var sTarget = oInput.getParameters("value");
+
+		// 	this.removeMessageFromTarget(sTarget);
+
+		// 	if (!oInput.getValue()) {
+		// 		this._MessageManager.addMessages(
+		// 			new Message({
+		// 				message: "A mandatory field is required",
+		// 				type: Core.MessageType.Error,
+		// 				additionalText: oInput.getLabels()[0].getText(),
+		// 				target: sTarget,
+		// 				processor: this.getView().getModel()
+		// 			})
+		// 		);
 		// 	}
 		// },
 	});

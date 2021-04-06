@@ -30,17 +30,17 @@
 						<f:formElements>
 							<f:FormElement label="Kanji">
 								<f:fields>
-									<Input required="true" value="{/formData/kanji}" id="kanji"/>
+									<Input required="true" value="{/formData/kanji}" id="kanji" liveChange=".onChange"/>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Sino Vietnamese Reading">
 								<f:fields>
-									<Input required="true" value="{/formData/sinoVReading}" />
+									<Input required="true" value="{/formData/sinoVReading}" liveChange=".onChange" />
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Meaning">
 								<f:fields>
-									<Input required="true" value="{/formData/meaning}" />
+									<Input required="true" value="{/formData/meaning}" liveChange=".onChange" />
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Level">
