@@ -4,68 +4,68 @@
     xmlns:l="sap.ui.layout"
 	xmlns:core="sap.ui.core">
 	<Dialog id="addKanjiModal" showHeader="false">
-            <VBox class="sapUiSmallMargin">
-		<f:Form id="addKanji" editable="true">
-			<f:title>
-				<core:Title text="Add new Kanji" />
-			</f:title>
-			<f:layout>
-				<f:ResponsiveGridLayout
-					labelSpanXL="3"
-					labelSpanL="3"
-					labelSpanM="3"
-					labelSpanS="12"
-					adjustLabelSpan="false"
-					emptySpanXL="4"
-					emptySpanL="4"
-					emptySpanM="4"
-					emptySpanS="0"
-					columnsXL="1"
-					columnsL="1"
-					columnsM="1"
-					singleContainerFullSize="false" />
-			</f:layout>
-			<f:formContainers>
-				<f:FormContainer>
-					<f:formElements>
-						<f:FormElement label="Kanji">
-							<f:fields>
-								<Input value="{SupplierName}" id="kanji"/>
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="Sino Vietnamese Reading">
-							<f:fields>
-								<Input value="{Street}" />
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="Meaning">
-							<f:fields>
-								<Input value="{City}" />
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="Level">
-							<f:fields>
-								<Select id="level" selectedKey="N5">
-									<items>
-										<core:Item text="N5" key="N5"/>
-										<core:Item text="N4" key="N4"/>
-										<core:Item text="N3" key="N3"/>
-                                        <core:Item text="N2" key="N2"/>
-                                        <core:Item text="N1" key="N1"/>
-									</items>
-								</Select>
-							</f:fields>
-						</f:FormElement>
-					</f:formElements>
-				</f:FormContainer>
-			</f:formContainers>
-		</f:Form>
-	</VBox>
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="addKanji" editable="true">
+				<f:title>
+					<core:Title text="Add new Kanji" />
+				</f:title>
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1"
+						singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Kanji">
+								<f:fields>
+									<Input required="true" value="{/formData/kanji}" id="kanji"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Sino Vietnamese Reading">
+								<f:fields>
+									<Input required="true" value="{/formData/sinoVReading}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Meaning">
+								<f:fields>
+									<Input required="true" value="{/formData/meaning}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Level">
+								<f:fields>
+									<Select id="level" selectedKey="{/formData/level}">
+										<items>
+											<core:Item text="N5" key="N5"/>
+											<core:Item text="N4" key="N4"/>
+											<core:Item text="N3" key="N3"/>
+											<core:Item text="N2" key="N2"/>
+											<core:Item text="N1" key="N1"/>
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
         <beginButton>
             <Button type="Reject" text="Cancel" press=".onCloseDialog"/>
         </beginButton>
         <endButton>
-            <Button type="Accept" text="Add" press=".onCloseDialog"/>
+            <Button type="Accept" text="Add" press=".onSubmitForm"/>
         </endButton>
 	</Dialog>
 </core:FragmentDefinition>

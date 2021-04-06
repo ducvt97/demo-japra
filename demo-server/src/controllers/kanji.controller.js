@@ -17,3 +17,10 @@ exports.getByKanji = (req, res, next) => {
         err ? res.json({status: 404, message: err}) : res.json({status: 200, data: kanji, message: "OK"});
     });
 }
+
+exports.add = (req, res, next) => {
+    const newKanji = new kanjiModel.Kanji(req.body);
+    newKanji.save()
+        .then(doc => res.json({status: 200, message: "Success"}))
+        .catch(err => res.json({status: 404, message: err}));
+}

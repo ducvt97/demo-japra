@@ -22,10 +22,10 @@
                         <Text text="Kanji" class="columnTitle" />
                     </Column>
                     <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-                        <Text text="Sino Vietnamese Reading"  class="columnTitle" />
+                        <Text text="Sino Vietnamese Reading" class="columnTitle" />
                     </Column>
                     <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
-                        <Text text="Meaning"  class="columnTitle" />
+                        <Text text="Meaning" class="columnTitle" />
                     </Column>
                     <Column hAlign="Center">
                         <Text text="Level" class="columnTitle" />

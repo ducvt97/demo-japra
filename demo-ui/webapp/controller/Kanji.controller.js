@@ -4,13 +4,21 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/FilterType",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/Fragment"
-], function (Controller, Filter, FilterOperator, FilterType, JSONModel, Fragment) {
+    "sap/ui/core/Fragment",
+	"sap/m/MessageToast",
+	'sap/ui/core/Core',
+	'sap/ui/core/message/Message',
+], function (Controller, Filter, FilterOperator, FilterType, JSONModel, Fragment, MessageToast, Core, Message) {
 	"use strict";
-
+	let defaultFormData = {
+		kanji: "",
+		sinoVReading: "",
+		meaning: "",
+		level: "N5"
+	}
     return Controller.extend("Japra.controller.Kanji", {
         onInit : function() {
-            var oData = {
+            let oData = {
                 searchText: "",
                 level: [{text: "--Select a level--", key: "placeholder"},
                     {text: "N5", key: "N5"},
@@ -19,9 +27,10 @@ sap.ui.define([
                     {text: "N2", key: "N2"},
                     {text: "N1", key: "N1"}
                 ],
-                kanjiCollection: []
+                kanjiCollection: [],
+				formData: defaultFormData
             }
-            var oModel = new JSONModel(oData);
+            let oModel = new JSONModel(oData);
 			this.getView().setModel(oModel);
         },
 
@@ -34,7 +43,7 @@ sap.ui.define([
         },
 
 		onSearch : function () {
-			var oView = this.getView(),
+			let oView = this.getView(),
 				sValue = oView.getModel().getProperty("/searchText"),
 				oFilter = new Filter([new Filter("sinoVReading", FilterOperator.Contains, sValue),
                     new Filter("kanji", FilterOperator.Contains, sValue),
@@ -44,7 +53,7 @@ sap.ui.define([
 		},
 
 		onOpenDialog : function () {
-			var oView = this.getView();
+			let oView = this.getView();
 
 			// create dialog lazily
 			if (!this.pDialog) {
@@ -63,8 +72,30 @@ sap.ui.define([
 			});
 		},
         onCloseDialog : function () {
+			this.getView().getModel().setProperty("/formData", defaultFormData);
             this.byId("addKanjiModal").close();
-        }
+        },
+		onSubmitForm : function() {
+			const formData = this.getView().getModel().getProperty("/formData");
+			if (!formData.kanji || !formData.sinoVReading || !formData.meaning)
+				MessageToast.show("Mandatory field is required");
+			else {
+				$.post("http://localhost:3000/kanji/add", formData ).then(res => {
+					MessageToast.show(res.message);
+					this.onCloseDialog();
+				}).catch(err => {
+					MessageToast.show(err);
+					this.onCloseDialog();
+				})
+			}
+		},
+		// onChange: function (oEvent) {
+		// 	var oInput = oEvent.getSource();
+
+		// 	if (oInput.getRequired()) {
+		// 		this.handleRequiredField(oInput);
+		// 	}
+		// },
 	});
 
 });
