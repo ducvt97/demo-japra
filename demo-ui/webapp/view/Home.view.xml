@@ -1,12 +1,13 @@
 <mvc:View
+        controllerName="Japra.controller.Home"
         xmlns="sap.m"
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:c="Japra.control"
         xmlns:com="Japra.component">
     <Panel headerText="Home" class="sapUiResponsiveMargin" width="auto">
         <content>
-            <c:Login />
-            <com:LoginForm />
+            <c:Login submit="onSubmit" />
+            <!-- <com:LoginForm submit="onSubmit" /> -->
         </content>
     </Panel>
 </mvc:View>

@@ -6,9 +6,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/Fragment",
 	"sap/m/MessageToast",
-	'sap/ui/core/Core',
-	'sap/ui/core/message/Message',
-], function (Controller, Filter, FilterOperator, FilterType, JSONModel, Fragment, MessageToast, Core, Message) {
+], function (Controller, Filter, FilterOperator, FilterType, JSONModel, Fragment, MessageToast) {
 	"use strict";
 	let defaultFormData = {
 		kanji: "",
@@ -32,11 +30,6 @@ sap.ui.define([
             }
             let oModel = new JSONModel(oData);
 			this.getView().setModel(oModel);
-
-            // this._MessageManager = Core.getMessageManager();
-            // this._MessageManager.removeAllMessages();
-            // this._MessageManager.registerObject(this.getView().byId("addKanji"), true);
-            // this.oView.setModel(this._MessageManager.getMessageModel(),"message");
         },
 
 		onSelectLevel : function(oEvent) {
@@ -94,30 +87,6 @@ sap.ui.define([
 				})
 			}
 		},
-		// onChange: function (oEvent) {
-		// 	var oInput = oEvent.getSource();
-
-		// 	if (oInput.getRequired()) {
-		// 		this.handleRequiredField(oInput);
-		// 	}
-		// },
-        // handleRequiredField: function (oInput) {
-		// 	var sTarget = oInput.getParameters("value");
-
-		// 	this.removeMessageFromTarget(sTarget);
-
-		// 	if (!oInput.getValue()) {
-		// 		this._MessageManager.addMessages(
-		// 			new Message({
-		// 				message: "A mandatory field is required",
-		// 				type: Core.MessageType.Error,
-		// 				additionalText: oInput.getLabels()[0].getText(),
-		// 				target: sTarget,
-		// 				processor: this.getView().getModel()
-		// 			})
-		// 		);
-		// 	}
-		// },
 	});
 
 });

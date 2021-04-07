@@ -12,8 +12,14 @@
 
 	max-width: 15rem;
 }
-
-.columnTitle {
+.labelText {
 	font-size: large;
-	font-weight: bold;
+}
+
+.validationText {
+	color: red;
+}
+
+.myClass {
+	display: block;
 }

@@ -3,10 +3,14 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
 	xmlns:core="sap.ui.core">
-        <Panel>
-            <Text text="Username" />
-            <Input value="{$this>username}" valueLiveUpdate="true" change="onChange" />
-            <Text text="Password" type="password" />
-            <Input value="{$this>password}" valueLiveUpdate="true" />
-        </Panel>
+            <l:VerticalLayout>
+                <Text text="{$this>usernameLabel}" class="labelText" />
+                <Input id="usernameInput" liveChange=".onChange('usernameInput')" />
+                <Text text="{$this>validationTextUsername}" visible="{!!${$this>validationTextUsername} }" class="validationText" />
+
+                <Text text="{$this>passwordLabel}" class="labelText" />
+                <Input id="passwordInput" type="Password" liveChange=".onChange('passwordInput')" />
+                <Text text="{$this>validationTextPassword}" visible="{!!${$this>validationTextPassword} }" class="validationText" />
+                <Button text="Sign In" press="onSubmit" />
+            </l:VerticalLayout>
 </core:FragmentDefinition>
