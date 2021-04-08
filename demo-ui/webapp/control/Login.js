@@ -28,11 +28,15 @@ sap.ui.define([
 			}
 		},
 		init : function () {
+            // Init aggregations
             this.setAggregation("_usernameInput", new Input({liveChange: this._onChange.bind(this, "_validationTextUsername")}));
             this.setAggregation("_passwordInput", new Input({liveChange: this._onChange.bind(this, "_validationTextPassword")}));
             this.setAggregation("_validationTextUsername", new Text({text: "Username cannot be empty.", visible: false}));
             this.setAggregation("_validationTextPassword", new Text({text: "Password cannot be empty.", visible: false}));
             this.setAggregation("_button", new Button({text: "Sign In", press: this._onSubmit.bind(this)}));
+            // Set style class for aggregations
+            this.getAggregation("_validationTextUsername").addStyleClass("validationText");
+            this.getAggregation("_validationTextPassword").addStyleClass("validationText");
 		},
         _onChange : function(prop, oEvent) {
             const value = oEvent.getParameter("value");
@@ -40,6 +44,7 @@ sap.ui.define([
 
         },
         _onSubmit : function(oEvent) {
+            // Get value
             const username = this.getAggregation("_usernameInput").getValue();
             const password = this.getAggregation("_passwordInput").getValue();
             // Validate input
@@ -51,7 +56,7 @@ sap.ui.define([
         renderer : function (oRenderManager, oControl) {
             oRenderManager.write("<div");
             oRenderManager.writeControlData(oControl);
-            oRenderManager.addClass("myClass");
+            oRenderManager.addClass("loginForm");
             oRenderManager.writeClasses();
             oRenderManager.write(">");
             oRenderManager.renderControl(new Text({text: "Username"}));
