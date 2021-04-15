@@ -6,8 +6,8 @@
         xmlns:com="Japra.component">
     <Panel headerText="Home" class="sapUiResponsiveMargin" width="auto">
         <content>
-            <c:Login submit="onSubmit" />
-            <!-- <com:LoginForm submit="onSubmit" /> -->
+            <!-- <c:Login submit="onSubmit" /> -->
+            <com:LoginForm submit="onSubmit" />
         </content>
     </Panel>
 </mvc:View>
